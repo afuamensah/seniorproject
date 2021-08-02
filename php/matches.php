@@ -22,7 +22,7 @@
 	$checked = array();
 	$confirm = array();
 
-	$query = "SELECT * FROM profile, matches WHERE lnum1=L_num";
+	$query = "SELECT * FROM profile, matches WHERE l_num1=L_num";
 	$result = $db->query($query);
 	$notif = $result->num_rows;
 	if ($result->num_rows > 0) {
@@ -30,7 +30,7 @@
 			for ($i=0; $i < $notif; $i++) {
 				$fname1[$i] = $row['f_name'];
 				$lname1[$i] = $row['l_name'];
-				$l_num1[$i] = $row['L_num'];
+				$l_num1[$i] = $row['l_num'];
 				$time[$i] = $row['match_time'];
 				$id[$i] = (int)$row['m_id'];
 				$checked[$i] = (int)$row['checked'];
@@ -41,14 +41,14 @@
 
 	//$timestamp = new DateTime($time);
 	//$timestamp = $timestamp->format('m/d/y h:ia');
-	$query2 = "SELECT f_name, l_name, l_num FROM profile, matches WHERE lnum2=L_num";
+	$query2 = "SELECT f_name, l_name, l_num FROM profile, matches WHERE l_num2=L_num";
 	$result2 = $db->query($query2);
 	if ($result2->num_rows > 0) {
 		while ($row = $result2->fetch_assoc()) {
 			for ($i=0; $i < $notif; $i++) {
 				$fname2[$i] = $row['f_name'];
 				$lname2[$i] = $row['l_name'];
-				$l_num2[$i] = $row['L_num'];
+				$l_num2[$i] = $row['l_num'];
 			}
 		}
 	}

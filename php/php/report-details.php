@@ -20,6 +20,7 @@
 			$pic = $row['prof_pic'];
 			$f_name = $row['f_name'];
 			$l_name = $row['l_name'];
+			$email = $row['email'];
 			$bday = $row['bday'];
 			$class = $row['class'];
 			$status = $row['status'];

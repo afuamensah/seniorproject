@@ -23,7 +23,7 @@
 	$checked = array();
 	$confirm = array();
 
-	$query = "SELECT * FROM profile, matches WHERE (lnum1= '$inquiry' or l_num2='$inquiry') and l_num1=L_num";
+	$query = "SELECT * FROM profile, matches WHERE (lnum1= '$inquiry' or lnum2='$inquiry') and lnum1=L_num";
 	$result = $db->query($query);
 	$notif = $result->num_rows;
 	if ($result->num_rows > 0) {
@@ -41,7 +41,7 @@
 
 	//$timestamp = new DateTime($time);
 	//$timestamp = $timestamp->format('m/d/y h:ia');
-	$query2 = "SELECT f_name, l_name FROM profile, matches WHERE l_num2=L_num";
+	$query2 = "SELECT f_name, l_name FROM profile, matches WHERE lnum2=L_num";
 	$result2 = $db->query($query2);
 	if ($result2->num_rows > 0) {
 		while ($row = $result2->fetch_assoc()) {

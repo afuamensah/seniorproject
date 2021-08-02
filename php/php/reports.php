@@ -29,7 +29,7 @@
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
 			for ($i=0; $i < $notif; $i++) {
-				$l_num[$i] = $row['l_num'];
+				$l_num[$i] = $row['L_num'];
 				$fname[$i] = $row['f_name'];
 				$lname[$i] = $row['l_name'];
 				$time[$i] = $row['r_time'];

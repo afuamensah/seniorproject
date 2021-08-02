@@ -19,7 +19,7 @@
 				echo '<a href="logout.php" class="logout">Log Out</a>';
 				echo '<br><br>';
 				echo '<p class="name"><b>'.$_SESSION['valid_user'].'</b></p>';
-				echo '<img src="../img/logo.png">';
+				echo '<img src="logo.png">';
 			}
 		?>
 			<ul class="list-group list-group-flush">

@@ -6,6 +6,7 @@ if (isset($_POST['email']) && isset($_POST['password']))
   // if the user has just tried to log in
   $email = $_POST['email'];
   $password = $_POST['password'];
+  $password = hash('sha256', $password);
 
   require('dbconnect.php');
 

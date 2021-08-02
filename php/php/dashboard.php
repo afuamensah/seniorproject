@@ -21,7 +21,7 @@
 
 	$time2 = array();
 
-	$query = "SELECT f_name, l_name, match_time, checked FROM profile, matches WHERE l_num1=L_num";
+	$query = "SELECT f_name, l_name, match_time, checked FROM profile, matches WHERE lnum1=L_num";
 	$result = $db->query($query);
 	$notif = $result->num_rows;
 	if ($result->num_rows > 0) {
@@ -37,7 +37,7 @@
 
 	//$timestamp = new DateTime($time);
 	//$timestamp = $timestamp->format('m/d/y h:ia');
-	$query2 = "SELECT f_name, l_name FROM profile, matches WHERE l_num2=L_num";
+	$query2 = "SELECT f_name, l_name FROM profile, matches WHERE lnum2=L_num";
 	$result2 = $db->query($query2);
 	if ($result2->num_rows > 0) {
 		while ($row = $result2->fetch_assoc()) {
@@ -48,7 +48,7 @@
 		}
 	}
 
-	$query3 = "SELECT f_name, l_name, r_time, checked FROM profile, reports WHERE l_num=lnum";
+	$query3 = "SELECT f_name, l_name, r_time, checked FROM profile, reports WHERE L_num=lnum";
 	$result3 = $db->query($query3);
 	$notif2 = $result3->num_rows;
 	if ($result3->num_rows > 0) {

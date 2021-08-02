@@ -8,22 +8,21 @@
 		echo 'Connection to database failed:'.mysqli_connect_error();
 		exit();
 	}
-
-    $inquiry=$_POST['msearch'];
-    
 	$fname1 = array();
 	$lname1 = array();
+	$l_num1 = array();
 
 	$time = array();
 
 	$fname2 = array();
 	$lname2 = array();
+	$l_num2 = array();
 
 	$id = array();
 	$checked = array();
 	$confirm = array();
 
-	$query = "SELECT * FROM profile, matches WHERE (lnum1= '$inquiry' or l_num2='$inquiry') and l_num1=L_num";
+	$query = "SELECT * FROM profile, matches WHERE lnum1=L_num";
 	$result = $db->query($query);
 	$notif = $result->num_rows;
 	if ($result->num_rows > 0) {
@@ -31,6 +30,7 @@
 			for ($i=0; $i < $notif; $i++) {
 				$fname1[$i] = $row['f_name'];
 				$lname1[$i] = $row['l_name'];
+				$l_num1[$i] = $row['L_num'];
 				$time[$i] = $row['match_time'];
 				$id[$i] = (int)$row['m_id'];
 				$checked[$i] = (int)$row['checked'];
@@ -41,13 +41,14 @@
 
 	//$timestamp = new DateTime($time);
 	//$timestamp = $timestamp->format('m/d/y h:ia');
-	$query2 = "SELECT f_name, l_name FROM profile, matches WHERE l_num2=L_num";
+	$query2 = "SELECT f_name, l_name, l_num FROM profile, matches WHERE lnum2=L_num";
 	$result2 = $db->query($query2);
 	if ($result2->num_rows > 0) {
 		while ($row = $result2->fetch_assoc()) {
 			for ($i=0; $i < $notif; $i++) {
 				$fname2[$i] = $row['f_name'];
 				$lname2[$i] = $row['l_name'];
+				$l_num2[$i] = $row['L_num'];
 			}
 		}
 	}
@@ -61,21 +62,21 @@
 					<button class="search" type="submit"><img src="../img/search.png" class="s-icon"></button>
 				</form>
             </div>
-            <h1>Matches Results</h1>
+            <h1>Matches Center (2020-2021)</h1>
+			<div class="container border dash">
 					<?php
 						if (!empty($fname1)) {
-							echo '<div class="container border dash">';
 							for ($i=0; $i < $notif; $i++) {
 								echo '<div class="new-match">';
 								if ($checked[$i] == 0) {
-									echo '<span class="bold">'.$time[$i].' || <a href="profile.php?lnum='.$l_num1[$i].'">'.$fname1[$i].' '.$lname1[$i].'</a> matched with <a href="profile.php?lnum='.$l_num1[$i].'">'.$fname2[$i].' '.$lname2[$i].'</a>!</span>';
+									echo '<span class="bold">'.$time[$i].' || <a href="profile.php?lnum='.$l_num1[$i].'">'.$fname1[$i].' '.$lname1[$i].'</a> matched with <a href="profile.php?lnum='.$l_num2[$i].'">'.$fname2[$i].' '.$lname2[$i].'</a>!</span>';
 									echo '<div class="choose action">
 									<form method="post">
 										<input type="submit"  class="button btn btn-outline-success choose" id="confirm" name="confirm" value="Confirm" />
 										<input type="submit" class="button btn btn-outline-danger" id="deny" name="deny" value="Deny" />
 									</form></div>';
 								} else {
-									echo '<span>'.$time[$i].' || <a href="profile.php?lnum='.$l_num1[$i].'">'.$fname1[$i].' '.$lname1[$i].'</a> matched with <a href="profile.php?lnum='.$l_num1[$i].'">'.$fname2[$i].' '.$lname2[$i].'</a>!</span>';
+									echo '<span>'.$time[$i].' || <a href="profile.php?lnum='.$l_num1[$i].'">'.$fname1[$i].' '.$lname1[$i].'</a> matched with <a href="profile.php?lnum='.$l_num2[$i].'">'.$fname2[$i].' '.$lname2[$i].'</a>!</span>';
 								}
 								if ($checked[$i] == 1 && $confirm[$i] == 0) {
 									echo '<div class="no">Denied</div>';
@@ -98,23 +99,19 @@
 								}
 								}
 								echo '</div>';
-								echo '</div>';
-							}
-							else if (!$inquiry) {
-								echo '<p>You have not entered a search.<br/>
-								Please go back and try again.</p>';
-							}
-							else if (strlen($inquiry) != 8) {
-								echo '<p>Your search is not a valid L number. Try again.</p>';
-							}
-							else {
-								echo '<p>There are no results. Please fix or make a new search.</p>';
+								//echo '<hr>';
 							}
 
 					?>
+			</div>
+			<h6>Past Matches:</h6>
+            <ul>
+                <li><a href="#">2019-2020</a></li>
+                <li><a href="#">2018-2019</a></li>
+                <li><a href="#">2017-2018</a></li>
+            </ul>
 		</div>
 	</main>
-	<br>
 	<?php
 	$db ->close();
 	require("footer.php");
