@@ -1,4 +1,4 @@
-# seniorproject
+# Herdr
 This was the website I created my senior project by the name of Herdr. Herdr is a roommate-finding app for students at Lipscomb University. I focused on the administration side, where admins can accept/deny roommate match requests, and view/take action on student reports.
 
 ### PHP folder
