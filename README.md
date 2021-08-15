@@ -52,3 +52,5 @@ consists of the **function.js** file, which was coded to run the help (help.php)
 ***This web app needs a web server (such as Apache or Nginx) and a MySQL database with the same table and attribute names in order for it to work.***
 
 - I use the XAMPPP stack: https://www.apachefriends.org/index.html
+
+Final Grade: **A**
